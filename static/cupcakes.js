@@ -1,21 +1,25 @@
-const BASE_URL = "http://127.0.0.1:5000/";
+const BASE_URL = "http://localhost:5000/api";
+
+/** given data about a cupcake, generate html */
 
 function generateCupcakeHTML(cupcake) {
   return `
     <div data-cupcake-id=${cupcake.id}>
-        <li>
-            ${cupcake.flavor} / ${cupcake.size} / ${cupcake.rating}
-            <button class="dlete-button">X</button>
-        </li>
-            <img class="Cupcake-img"
-                src="${cupcake.image}"
-                alt="(no iamge provided)">
+      <li>
+        ${cupcake.flavor} / ${cupcake.size} / ${cupcake.rating}
+        <button class="delete-button">X</button>
+      </li>
+      <img class="Cupcake-img"
+            src="${cupcake.image}"
+            alt="(no image provided)">
     </div>
-    `;
+  `;
 }
 
-async function getCakes() {
-  const response = await axios.get(`${BASE_URL}/api/cupcakes`);
+/** put initial cupcakes on page. */
+
+async function showInitialCupcakes() {
+  const response = await axios.get(`/api/cupcakes`);
 
   for (let cupcakeData of response.data.cupcakes) {
     let newCupcake = $(generateCupcakeHTML(cupcakeData));
@@ -23,4 +27,4 @@ async function getCakes() {
   }
 }
 
-$(getCakes);
+$(showInitialCupcakes);

@@ -2,45 +2,44 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Cupcakes</title>
+    <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <div>
-      <h1>Cupcakes</h1>
-      <ul id="cupcakes-list"></ul>
-    </div>
-    <form id="new-cupcake">
-      <h2>Add a new cupcake</h2>
+    <h1>See all the cupcakes!</h1>
+
+    <ul id="cupcakes-list"></ul>
+
+    <h2>Add a new cupcake!</h2>
+
+    <form id="new-cupcake-form">
       <div>
-        Flavor
-        <input type="text" name="flavor" class="text" placeholder="flavor" />
+        <label for="form-flavor">Flavor: </label>
+        <input name="flavor" id="form-flavor" />
       </div>
+
       <div>
-        Size
-        <input type="text" name="size" class="text" placeholder="size" />
+        <label for="form-size">Size: </label>
+        <input name="size" id="form-size" />
       </div>
+
       <div>
-        Rating
-        <input type="text" name="rating" class="text" placeholder="rating" />
+        <label for="form-rating">Rating: </label>
+        <input type="number" name="rating" id="form-rating" />
       </div>
+
       <div>
-        Image URL
-        <input type="text" name="img-url" class="text" placeholder="url" />
+        <label for="form-image">Image: </label>
+        <input name="image" id="form-image" />
       </div>
-      <button>Submit</button>
+
+      <button>Add!</button>
     </form>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"
-      integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
-    <scripts src="static/cupcakes.js"></scripts>
+
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="/static/cupcakes.js"></script>
   </body>
 </html>
