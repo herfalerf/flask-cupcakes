@@ -1,5 +1,3 @@
-const BASE_URL = "http://localhost:5000/api";
-
 /** given data about a cupcake, generate html */
 
 function generateCupcakeHTML(cupcake) {
@@ -26,5 +24,34 @@ async function showInitialCupcakes() {
     $("#cupcakes-list").append(newCupcake);
   }
 }
+
+$("#new-cupcake-form").on("submit", async function (evt) {
+  evt.preventDefault();
+
+  let flavor = $("#form-flavor").val();
+  let rating = $("#form-rating").val();
+  let size = $("#form-size").val();
+  let image = $("#form-image").val();
+
+  const newCupcakeResponse = await axios.post(`/api/cupcakes`, {
+    flavor,
+    rating,
+    size,
+    image,
+  });
+
+  let newCupcake = $(generateCupcakeHTML(newCupcakeResponse.data.cupcake));
+  $("#cupcakes-list").append(newCupcake);
+  $("#new-cupcake-form").trigger("reset");
+});
+
+$("#cupcakes-list").on("click", ".delete-button", async function (evt) {
+  evt.preventDefault();
+  let $cupcake = $(evt.target).closest("div");
+  let cupcakeId = $cupcake.attr("data-cupcake-id");
+
+  await axios.delete(`api/cupcakes/${cupcakeId}`);
+  $cupcake.remove();
+});
 
 $(showInitialCupcakes);
